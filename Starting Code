@@ -1,0 +1,9 @@
+#include <PRIZM.h>
+PRIZM prizm;
+
+void setup() {
+  prizm.PrizmBegin();
+}
+
+void loop() {
+}
