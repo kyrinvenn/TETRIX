@@ -1,0 +1,23 @@
+  #include  <PRIZM.h>
+PRIZM prizm;
+
+void setup() {
+  prizm.PrizmBegin();
+  prizm.setMotorInvert(1,1);
+}
+
+void loop(){
+ 
+ prizm.setMotorPowers(50,50);
+ delay(2000);
+ prizm.setMotorPowers(50,0);
+ delay(1500);
+ prizm.setMotorPowers(50,50);
+ delay(150);
+ prizm.setMotorPowers(0,50);
+ delay(1500);
+ prizm.setMotorPowers(50,50);
+ delay(500);
+ prizm.PrizmEnd();
+ 
+ }
