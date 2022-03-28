@@ -1,0 +1,20 @@
+#include <PRIZM.h>
+PRIZM prizm;
+
+void setup() {
+
+  prizm.PrizmBegin();
+  prizm.setServoSpeed(1,25);
+
+}
+
+void loop() {
+
+//max = (137) 
+//lowest = (77)
+  prizm.setServoPosition(1,137);
+  delay(3000);                   
+  prizm.setServoPosition(1,77); 
+  delay(3000);                    
+ 
+}
