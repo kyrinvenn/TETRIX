@@ -1,0 +1,78 @@
+#include <TELEOP.h>   
+#include <PRIZM.h>    
+
+PRIZM prizm;          
+PS4 ps4;
+        
+int Motor1;
+int Motor2;
+
+float lowSpeed = 0.2; 
+float medSpeed = 0.5;
+float highSpeed = 1;
+
+float currentSpeed = medSpeed;
+int shift = 2;
+
+void setup(){
+  prizm.PrizmBegin();            
+  ps4.setDeadZone (LEFT,10);     
+  ps4.setDeadZone(RIGHT,10);
+  prizm.setMotorInvert(2,1);
+    
+}
+
+void loop() {
+
+  ps4.getPS4();
+
+  if(ps4.Connected){ 
+
+void BasicMove(){    
+    int Motor1 = ps4.Motor(RY);
+    int Motor2 = ps4.Motor(LY);
+    prizm.setMotorPowers(Motor1,Motor2);
+  }
+  if(ps4.Button(R1)==1){
+  prizm.setMotorDegrees(360,270,360,-270);delay(1200);
+  }
+  prizm.resetEncoders();
+ 
+  if(ps4.Button(L1)==1){
+  prizm.setMotorDegrees(360,-270,360,270);delay(1200);
+  }
+  prizm.resetEncoders();
+
+}
+
+void Shifter(){
+  if(ps4.Button(UP)==1 && shift <3){
+    shift++;
+  } 
+  if(ps4.Button(DOWN)==1 && shift >3){
+    shift--;
+  }
+  switch (shift) {
+    case 1:
+     currentSpeed = lowSpeed;
+     break;
+    case 2:
+     currentSpeed = medSpeed;
+     break;
+    case 3:
+     currentSpeed = highSpeed;
+     break;
+  }
+}
+}
+void Forward(){
+  prizm.setMotorPowers(100,100);
+}
+
+void Backward(){
+  prizm.setMotorPowers(-100,-100);
+}
+
+void Stop(){
+  prizm.setMotorPowers(125,125);
+}
