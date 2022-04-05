@@ -1,0 +1,30 @@
+  #include <PRIZM.h>
+  PRIZM prizm;
+
+void setup() {
+
+  prizm.PrizmBegin();
+  prizm.setServoSpeed(1,25);
+  prizm.setMotorInvert(1,1);
+}
+
+void loop() {
+
+if((prizm.readLineSensor(4) == 0)&&(prizm.readLineSensor(3) == 0)){
+  prizm.setMotorPowers(30,30);
+}
+if((prizm.readLineSensor(3) == 1)&&(prizm.readLineSensor(4) == 0)){
+  prizm.setMotorPowers(15,125);
+}
+if((prizm.readLineSensor(4) == 1)&&(prizm.readLineSensor(3)== 0)){
+  prizm.setMotorPowers(125,15);
+}
+if((prizm.readLineSensor(3) == 1)&&(prizm.readLineSensor(4)== 1)){
+  prizm.setMotorPowers(125,125);
+}
+if (prizm.readSonicSensorCM(5)<4){
+  prizm.setServoPosition(1,77);delay(200);
+  prizm.
+}
+
+  }
